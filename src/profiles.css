@@ -1,0 +1,31 @@
+.bassist-profile{margin:24px 0;border:1px solid #b7cbd7;border-radius:11px;background:#f5faf9;overflow:hidden}
+.bassist-profile>summary{display:flex;align-items:center;gap:12px;cursor:pointer;padding:15px 18px;list-style:none}
+.bassist-profile>summary::-webkit-details-marker,.profile-card>summary::-webkit-details-marker{display:none}
+.bassist-profile>summary span{font-size:.7rem;letter-spacing:.12em;color:var(--teal);font-weight:800}
+.bassist-profile>summary b{font-size:.94rem}
+.bassist-profile-body{padding:4px 18px 18px;border-top:1px solid #d7e6e2}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.profile-grid>div{background:#fff;border:1px solid var(--line);border-radius:9px;padding:16px}
+.profile-grid .profile-sound{grid-column:1/-1;background:#fff8e7}
+.profile-grid h5,.profile-card-body>h5{font-size:.78rem;letter-spacing:.06em;color:var(--teal);margin:0 0 7px}
+.profile-grid p{font-size:.9rem;line-height:1.85;margin:0}
+.gear-caveat{font-size:.76rem!important;line-height:1.75!important;color:var(--muted);margin:13px 0 0!important}
+.profile-card{background:#fff;border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden}
+.profile-card>summary{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 22px;cursor:pointer;list-style:none}
+.profile-card>summary b{display:block;font-size:1.08rem;margin-bottom:5px}
+.profile-card>summary small{display:block;color:var(--muted);line-height:1.7}
+.profile-open{font-size:.78rem;white-space:nowrap;color:var(--teal)}
+.profile-card[open] .profile-open{font-size:0}
+.profile-card[open] .profile-open::after{content:'閉じる ×';font-size:.78rem}
+.profile-card-body{padding:0 22px 22px;border-top:1px solid #e6edf2}
+.profile-tracks{display:flex;flex-wrap:wrap;gap:8px}
+.profile-tracks a{font-size:.82rem;padding:7px 10px;background:#edf3f7;border-radius:7px;text-decoration:none}
+@media(max-width:760px){
+  .profile-grid{grid-template-columns:1fr}
+  .profile-grid .profile-sound{grid-column:auto}
+  .bassist-profile>summary{align-items:flex-start;flex-direction:column;gap:4px}
+  .profile-card>summary{align-items:flex-start;padding:17px}
+  .profile-open{white-space:normal;text-align:right}
+  .profile-card-body{padding:0 17px 17px}
+}
+
