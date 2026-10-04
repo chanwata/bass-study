@@ -1,0 +1,12 @@
+import json, pathlib, re
+root = pathlib.Path(__file__).resolve().parents[1]
+data = json.loads((root / 'src/course.json').read_text())
+template = (root / 'src/template.html').read_text()
+payload = json.dumps(data, ensure_ascii=False).replace('<', '\\u003c')
+page = template.replace('/* COURSE_DATA */', 'const COURSE = ' + payload + ';')
+page = page.replace('/* APP_JS */', (root / 'src/app.js').read_text())
+page = page.replace('/* APP_CSS */', (root / 'src/style.css').read_text())
+assert not re.search(r'/\* (COURSE_DATA|APP_JS|APP_CSS) \*/', page)
+(root / 'dist').mkdir(exist_ok=True)
+(root / 'dist/index.html').write_text(page)
+print(f'Built dist/index.html: {len(page.encode()):,} bytes')
