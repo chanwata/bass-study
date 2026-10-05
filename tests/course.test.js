@@ -56,16 +56,13 @@ test('deep links and day-specific reflection examples',()=>{
   assert.equal(vm.runInContext('Object.keys(answerExamples).length',ctx),14);
   assert.equal(vm.runInContext('spotifyId(COURSE.tracks[5])',ctx),'4imW8rgHwQ3rAmYoeGxW6F');
 });
-test('playlist listening path keeps all 48 numbers in order and links across day boundaries',()=>{
+test('Spotify order is a lookup index into the themed lesson sequence',()=>{
   assert.deepEqual(COURSE.tracks.map(t=>t.id),Array.from({length:48},(_,i)=>i+1));
   const ctx=boot({value:'{}'});
-  const index=vm.runInContext('playlistPage(0)',ctx);
-  assert.deepEqual([...index.matchAll(/href="#playlist\/track-(\d+)"/g)].map(m=>+m[1]),COURSE.tracks.map(t=>t.id));
-  const sixth=vm.runInContext('playlistPage(6)',ctx);
-  assert.match(sixth,/href="#playlist\/track-5"/);
-  assert.match(sixth,/href="#playlist\/track-7"/);
-  assert.match(sixth,/href="#day-03\/track-6"/);
-  assert.match(sixth,/プレイリストに入っているこの曲は別の録音版です/);
+  const index=vm.runInContext('playlistPage()',ctx);
+  assert.deepEqual([...index.matchAll(/class="catalog-row" href="([^"]+)"/g)].map(m=>m[1]),COURSE.tracks.map(t=>{const day=COURSE.days.find(d=>d.tracks.includes(t.id));return `#day-${String(day.id).padStart(2,'0')}/track-${t.id}`}));
+  assert.match(index,/学習はDay 1〜14を順に進め/);
+  assert.match(index,/6曲目と34曲目/);
 });
 test('track embeds expose playlist and exact recording separately, with mismatch warning',()=>{
   const ctx=boot({value:'{}'});
