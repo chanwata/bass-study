@@ -6,7 +6,7 @@ const COURSE=JSON.parse(fs.readFileSync('src/course.json','utf8'));
 const source=fs.readFileSync('src/app.js','utf8');
 function boot(storage,options={}){
   const element=()=>({hidden:true,textContent:'',value:'',classList:{toggle(){}},addEventListener(){}});
-  const ctx=vm.createContext({COURSE,localStorage:{getItem:()=>storage.value,setItem:(key,value)=>{if(options.blocked)throw Error('blocked');storage.value=value}},document:{querySelector:element,querySelectorAll:()=>[]},Date,console});
+  const ctx=vm.createContext({COURSE,localStorage:{getItem:()=>storage.value,setItem:(key,value)=>{if(options.blocked)throw Error('blocked');storage.value=value}},document:{querySelector:element,querySelectorAll:()=>[],createElement:()=>({click(){options.downloaded.clicked=true},remove(){options.downloaded.removed=true}}),body:{appendChild(){options.downloaded.appended=true}}},window:{confirm:()=>true},URL:{createObjectURL(blob){options.downloaded.blob=blob;return 'blob:mock'},revokeObjectURL(){}},Blob,clearTimeout(){},setTimeout(){},Date,console});
   vm.runInContext(source.slice(0,source.indexOf('renderNav();updateProgress();addEventListener')),ctx);
   return ctx;
 }
@@ -54,4 +54,18 @@ test('deep links and day-specific reflection examples',()=>{
   assert.equal(vm.runInContext('trackHash(34)',ctx),'#day-10/track-34');
   assert.equal(vm.runInContext('Object.keys(answerExamples).length',ctx),14);
   assert.equal(vm.runInContext('spotifyId(COURSE.tracks[5])',ctx),'4imW8rgHwQ3rAmYoeGxW6F');
+});
+test('JSON backup contains notes and both check groups, and uses a clickable DOM link',async()=>{
+  const storage={value:'{}'},downloaded={};
+  const ctx=boot(storage,{downloaded});
+  vm.runInContext('save("notes",1,"私のメモ");save("days",1,true);save("tracks",6,true);exportData()',ctx);
+  assert.equal(downloaded.appended,true);
+  assert.equal(downloaded.clicked,true);
+  assert.equal(downloaded.removed,true);
+  const backup=JSON.parse(await downloaded.blob.text());
+  assert.equal(backup.format,'bass-listening-lab');
+  assert.equal(backup.version,1);
+  assert.equal(backup.notes[1],'私のメモ');
+  assert.equal(backup.days[1],true);
+  assert.equal(backup.tracks[6],true);
 });
