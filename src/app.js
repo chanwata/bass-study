@@ -33,20 +33,26 @@ function profileGrid(profile){return `<div class="profile-grid">
   <div><h5>楽器の使い方・奏法</h5><p>${esc(profile.technique)}</p></div>
   <div class="profile-sound"><h5>音の特徴</h5><p>${esc(profile.sound)}</p></div>
   </div>${profileSourceLinks(profile)}`}
+function spotifyPlayer(track){
+  const id=COURSE.spotifyTracks?.[track.id-1]||track.spotify;
+  if(!id)return '';
+  return `<div class="track-player"><span class="eyebrow">LISTEN HERE</span><iframe title="Spotifyで${esc(track.artist)}「${esc(track.title)}」を再生" src="https://open.spotify.com/embed/track/${id}?utm_source=generator&amp;theme=0" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><p>ここで再生しながら、下の聴きどころを確かめる。</p></div>`;
+}
 function trackCard(track, dayId){
   const profile=COURSE.bassists[track.bassist];
   const version=track.version?`<div class="version-alert"><b>録音を確認：</b> ${esc(track.version)}</div>`:'';
-  const spotify=track.spotify?`https://open.spotify.com/track/${track.spotify}`:`https://open.spotify.com/search/${encodeURIComponent(track.artist+' '+track.title)}`;
+  const spotifyId=COURSE.spotifyTracks?.[track.id-1]||track.spotify;
+  const spotify=spotifyId?`https://open.spotify.com/track/${spotifyId}`:`https://open.spotify.com/search/${encodeURIComponent(track.artist+' '+track.title)}`;
   return `<details class="track-card" id="track-${track.id}">
   <summary><span class="track-index">${String(track.id).padStart(2,'0')}</span><span class="track-summary"><h3>${esc(track.title)}</h3><p>${esc(track.artist)} · Bass: ${esc(track.bassist)}</p></span><span class="disclosure" aria-hidden="true">＋</span></summary>
   <div class="track-body">
-    <div class="recording"><b>対象録音</b>${esc(track.album)} (${track.year}) · Bass: ${esc(track.bassist)}</div>${version}
+    <div class="recording"><b>対象録音</b>${esc(track.album)} (${track.year}) · Bass: ${esc(track.bassist)}</div>${version}${spotifyPlayer(track)}
     <p class="track-thesis">${esc(track.thesis)}</p><p>${esc(track.background)}</p><p>${esc(track.analysis)}</p>
     ${profile?`<details class="bassist-profile"><summary><span>WHO PLAYS IT?</span><b>${esc(track.bassist)}：人物・機材・音</b></summary><div class="bassist-profile-body">${profileGrid(profile)}<p class="gear-caveat">機材はキャリアを通した代表例。対象録音で使われた個体を示す場合は本文で明記しています。</p></div></details>`:''}
     <h4 class="track-subhead">3回目までに聴くこと</h4><ol class="listen-steps">${track.listens.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
     <div class="exercise"><h4>ベースを持ったら</h4><p>${esc(track.exercise)}</p></div>
     <p class="pitfall"><b>ここは雑に覚えない：</b> ${esc(track.pitfall)}</p>
-    <div class="track-actions"><a class="button-link" href="${spotify}" target="_blank" rel="noopener noreferrer">Spotifyでこの曲を探す</a><label class="track-check"><input type="checkbox" data-track="${track.id}" ${state.tracks[track.id]?'checked':''}> 3回聴いた</label></div>${sourceLinks(track)}
+    <div class="track-actions"><a class="button-link" href="${spotify}" target="_blank" rel="noopener noreferrer">Spotifyアプリで開く</a><label class="track-check"><input type="checkbox" data-track="${track.id}" ${state.tracks[track.id]?'checked':''}> 3回聴いた</label></div>${sourceLinks(track)}
   </div></details>`;
 }
 function rhythmLab(day){
