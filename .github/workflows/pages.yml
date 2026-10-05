@@ -19,6 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check JavaScript and course data
+        run: |
+          node --check src/app.js
+          node --test tests/*.test.js
+          python3 -m json.tool src/course.json > /dev/null
       - name: Build the single-page course
         run: python3 scripts/build.py
       - name: Configure GitHub Pages

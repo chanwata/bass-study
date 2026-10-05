@@ -1,0 +1,48 @@
+.menu-toggle{display:none}
+.data-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px}
+#save-status{color:var(--teal);font-size:.78rem;margin-right:10px}
+.quick-route{background:#e7f1ef;border:1px solid #b5d4cd;border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.quick-route h2{font-size:1rem;margin:0 0 5px;color:var(--teal)}
+.quick-route p{font-size:.9rem;line-height:1.7;margin:0}
+.lesson-jumps{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.lesson-jumps a{display:inline-flex;align-items:center;min-height:44px;padding:9px 14px;border:1px solid #b8cdd8;border-radius:9px;background:#fff;text-decoration:none;font-weight:650;font-size:.9rem}
+.clip-help{font-size:.87rem;line-height:1.75;background:#f1f7f6;padding:12px 14px;border-radius:8px;color:#254f4a}
+.rhythm-note{font-size:.78rem;margin:10px 0 0}
+.tempo-control button{min-height:44px}
+#metronome-beat{min-width:5em;font-variant-numeric:tabular-nums;color:var(--teal);font-weight:700}
+.track-card,.profile-card,#recordings,#quiz,#notes{scroll-margin-top:20px}
+.track-check,.complete-check{min-height:44px;padding:7px 10px;border-radius:8px}
+.button-link,.quiet,.extra-nav a,.lesson-footer a,.profile-tracks a{display:inline-flex;align-items:center;min-height:44px}
+.today-tracks a{min-height:44px}
+.track-player iframe{max-width:100%}
+@media(max-width:760px){
+  .sidebar{padding:13px 18px}
+  .brand{max-width:65%}
+  .sidebar-caption{top:17px;right:18px}
+  .course-progress{margin:10px 0 8px}
+  .menu-toggle{display:block;width:100%;min-height:44px;text-align:left;background:#1e354b;color:#fff;border-color:#54718a}
+  #menu-body{display:none;margin-top:10px}
+  .menu-open #menu-body{display:block}
+  .sidebar #day-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;gap:5px}
+  .day-link{flex:auto;min-height:44px;align-items:center;padding:8px;font-size:.78rem}
+  .extra-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .extra-nav a{min-height:44px;padding:9px}
+  .topbar{display:block;padding:10px 18px}
+  .topbar>span{display:none}
+  .data-actions{justify-content:flex-start;gap:2px 7px}
+  #save-status{flex:1 0 100%;margin:0}
+  .quiet{padding:8px;font-size:.8rem;min-height:44px}
+  .content-grid{padding:18px 16px}
+  .panel{padding:18px}
+  .track-body{padding:0 15px 18px}
+  .track-player{padding:11px}
+  .bassist-profile-body,.profile-grid>div{padding:12px}
+  .lesson-jumps{margin-bottom:13px}
+  .lesson-jumps a{flex:1;justify-content:center;padding:8px}
+  .quick-route{padding:16px}
+  .lesson-footer a{min-height:44px;padding:7px 0}
+  .rhythm-grid{gap:2px}
+  .rhythm-cell{font-size:.64rem;padding:9px 0}
+}
+@media(max-width:360px){.sidebar #day-nav{grid-template-columns:1fr}.data-actions{gap:0}.quiet{font-size:.74rem;padding:6px}.track-player iframe{height:152px}}
+@media print{.menu-toggle,.lesson-jumps,.quick-route,#metronome-toggle{display:none!important}}

@@ -1,20 +1,20 @@
 {
   "title": "BASS LISTENING LAB",
   "playlist": "74F2hzRP6sczl87Jj7mynI",
-  "spotifyTracks": [
-    "0LVvnJs7eOuHIkWwjWHEWF", "3Um9toULmYFGCpvaIPFw7l", "2aCKBrLn7rbhStk5k4FwnF", "7s25THrKz86DM225dOYwnr",
-    "3zBhihYUHBmGd2bcQIobrF", "6MqfTP3OwngywVTOS5OAFt", "7rvGZDlfqCjY9EWEUg3Xs6", "5YLnfy7R2kueN0BRPkjiEG",
-    "7fLbUdinXGkwjeH8j40seK", "6WIh0P8aupqSHeqUULThF0", "0WSlOSMLJWoWUpWci9nnRb", "66TSoVnJ1P9Tyok03zUlTr",
-    "74iQ3gahRTOGc19bYadBE3", "4o1yx2u3jBmR360WIXZ3L0", "42rFOQqHmXf9IkdwVqkooK", "6VZdUa8JjaGF2LGsiRG9lC",
-    "0PQFPcSK1gnBGlbV4CZCG0", "5WwRKYnVy9dekqXAGPbAvU", "4pNiE4LCVV74vfIBaUHm1b", "3kXoKlD84c6OmIcOLfrfEs",
-    "5VJjhHyG8NZ5xdgG6uTb3P", "5emxp4RqsF6QoAWXW2Afrk", "4UQH52FfgGpzDShKDbBvEA", "2Bxt2qamL6iu0XN0Td484J",
-    "1Aix42Q7mxGLMDglHhIOg3", "7HVLRiHEzNYuNlbKYy3JVq", "4OzXE9NnSdD9aEAwBcnYBI", "5ezpqroesZ0QIM1B9EM2op",
-    "0fuLT4IyhmLbbrKPqJqE80", "73J7OKw178I0K5JCHnBp4s", "3cN6SCEZGNx8Qm5WrLJtRs", "1opSxQP8KkdKOGvbvlmuIV",
-    "099G8HvktnGdD0zBZIWyQ0", "26QE9Tvw8lhsXRBz2VPfq2", "76nc8gE0SyMOIygcw7GJ6t", "2iuf8q0JzFh6oJdFYXsx1v",
-    "0pNeVovbiZHkulpGeOx1Gj", "3MODES4TNtygekLl146Dxd", "466C6kwoJHLUJ8VHG98hCY", "3lpDrxUkr0tIe1kmJvdK7d",
-    "62uLNJgVZaFiEiKV4LpoYJ", "7dSCxR4LqkmxoBrq9MzVSD", "029NqmIySn1kOY305AAhxT", "3yzM3pkIF5rlllUAAhFPx7",
-    "42uCM9saw5B3bCjEFLROlE", "0VLdJcQUsqHBBwqPp4CIKJ", "1dyUxu73YVV4661xsoib5b", "7CH99b2i1TXS5P8UUyWtnM"
-  ],
+  "spotifyByTrack": {
+    "1": "0LVvnJs7eOuHIkWwjWHEWF", "2": "3Um9toULmYFGCpvaIPFw7l", "3": "2aCKBrLn7rbhStk5k4FwnF", "4": "7s25THrKz86DM225dOYwnr",
+    "5": "3zBhihYUHBmGd2bcQIobrF", "6": "4imW8rgHwQ3rAmYoeGxW6F", "7": "7rvGZDlfqCjY9EWEUg3Xs6", "8": "5YLnfy7R2kueN0BRPkjiEG",
+    "9": "7fLbUdinXGkwjeH8j40seK", "10": "6WIh0P8aupqSHeqUULThF0", "11": "0WSlOSMLJWoWUpWci9nnRb", "12": "66TSoVnJ1P9Tyok03zUlTr",
+    "13": "74iQ3gahRTOGc19bYadBE3", "14": "4o1yx2u3jBmR360WIXZ3L0", "15": "42rFOQqHmXf9IkdwVqkooK", "16": "6VZdUa8JjaGF2LGsiRG9lC",
+    "17": "0PQFPcSK1gnBGlbV4CZCG0", "18": "5WwRKYnVy9dekqXAGPbAvU", "19": "4pNiE4LCVV74vfIBaUHm1b", "20": "3kXoKlD84c6OmIcOLfrfEs",
+    "21": "5VJjhHyG8NZ5xdgG6uTb3P", "22": "5emxp4RqsF6QoAWXW2Afrk", "23": "4UQH52FfgGpzDShKDbBvEA", "24": "2Bxt2qamL6iu0XN0Td484J",
+    "25": "1Aix42Q7mxGLMDglHhIOg3", "26": "7HVLRiHEzNYuNlbKYy3JVq", "27": "4OzXE9NnSdD9aEAwBcnYBI", "28": "5ezpqroesZ0QIM1B9EM2op",
+    "29": "0fuLT4IyhmLbbrKPqJqE80", "30": "73J7OKw178I0K5JCHnBp4s", "31": "3cN6SCEZGNx8Qm5WrLJtRs", "32": "1opSxQP8KkdKOGvbvlmuIV",
+    "33": "099G8HvktnGdD0zBZIWyQ0", "34": "2FeiLxyPTi837wdD2rMcfD", "35": "76nc8gE0SyMOIygcw7GJ6t", "36": "2iuf8q0JzFh6oJdFYXsx1v",
+    "37": "0pNeVovbiZHkulpGeOx1Gj", "38": "3MODES4TNtygekLl146Dxd", "39": "466C6kwoJHLUJ8VHG98hCY", "40": "3lpDrxUkr0tIe1kmJvdK7d",
+    "41": "62uLNJgVZaFiEiKV4LpoYJ", "42": "7dSCxR4LqkmxoBrq9MzVSD", "43": "029NqmIySn1kOY305AAhxT", "44": "3yzM3pkIF5rlllUAAhFPx7",
+    "45": "42uCM9saw5B3bCjEFLROlE", "46": "0VLdJcQUsqHBBwqPp4CIKJ", "47": "1dyUxu73YVV4661xsoib5b", "48": "7CH99b2i1TXS5P8UUyWtnM"
+  },
   "tracks": [
     {
       "id": 1,
@@ -42,8 +42,7 @@
         "jamerson",
         "motown"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 2,
@@ -71,8 +70,7 @@
         "jamerson",
         "motown"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 3,
@@ -99,8 +97,7 @@
       "sources": [
         "jamerson"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 4,
@@ -127,8 +124,7 @@
       "sources": [
         "respect"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 5,
@@ -155,8 +151,7 @@
       "sources": [
         "dunn"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 6,
@@ -185,8 +180,7 @@
         "jemmott",
         "memphis-live"
       ],
-      "version": "要照合：1967年スタジオ版 ≒3分＝Tommy Cogbill。教材の対象は1971年Fillmore West版 ≒7分40秒＝Jerry Jemmott。",
-      "spotify": "4imW8rgHwQ3rAmYoeGxW6F"
+      "version": "要照合：1967年スタジオ版 ≒3分＝Tommy Cogbill。教材の対象は1971年Fillmore West版 ≒7分40秒＝Jerry Jemmott。"
     },
     {
       "id": 7,
@@ -213,8 +207,7 @@
       "sources": [
         "rainey"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 8,
@@ -241,8 +234,7 @@
       "sources": [
         "hood"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 9,
@@ -269,8 +261,7 @@
       "sources": [
         "weeks"
       ],
-      "version": "対象はアルバムLiveの長いライブ録音。Everything Is Everything収録のスタジオ版と区別する。",
-      "spotify": ""
+      "version": "対象はアルバムLiveの長いライブ録音。Everything Is Everything収録のスタジオ版と区別する。"
     },
     {
       "id": 10,
@@ -298,8 +289,7 @@
         "carol",
         "carol-tips"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 11,
@@ -326,8 +316,7 @@
       "sources": [
         "meters"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 12,
@@ -354,8 +343,7 @@
       "sources": [
         "rocco"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 13,
@@ -383,8 +371,7 @@
         "larry",
         "sly"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 14,
@@ -411,8 +398,7 @@
       "sources": [
         "larry"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 15,
@@ -439,8 +425,7 @@
       "sources": [
         "bootsy"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 16,
@@ -467,8 +452,7 @@
       "sources": [
         "louis"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 17,
@@ -495,8 +479,7 @@
       "sources": [
         "bernard"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 18,
@@ -523,8 +506,7 @@
       "sources": [
         "bernard"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 19,
@@ -551,8 +533,7 @@
       "sources": [
         "nathan"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 20,
@@ -579,8 +560,7 @@
       "sources": [
         "verdine"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 21,
@@ -607,8 +587,7 @@
       "sources": [
         "brick"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 22,
@@ -636,8 +615,7 @@
         "peg",
         "rainey"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 23,
@@ -664,8 +642,7 @@
       "sources": [
         "freddie"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 24,
@@ -692,8 +669,7 @@
       "sources": [
         "zender"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 25,
@@ -720,8 +696,7 @@
       "sources": [
         "herbie"
       ],
-      "version": "対象はThrustの1974年スタジオ版。Floodなどのライブ版や別編成と区別する。",
-      "spotify": ""
+      "version": "対象はThrustの1974年スタジオ版。Floodなどのライブ版や別編成と区別する。"
     },
     {
       "id": 26,
@@ -748,8 +723,7 @@
       "sources": [
         "alphonso"
       ],
-      "version": "対象はMysterious Travellerの原録音。後年のカバーでは奏者が異なる。",
-      "spotify": ""
+      "version": "対象はMysterious Travellerの原録音。後年のカバーでは奏者が異なる。"
     },
     {
       "id": 27,
@@ -777,8 +751,7 @@
         "jaco-interview",
         "jaco-life"
       ],
-      "version": "対象はHeavy Weatherの1977年版。ライブ版やトリビュート版と分ける。",
-      "spotify": ""
+      "version": "対象はHeavy Weatherの1977年版。ライブ版やトリビュート版と分ける。"
     },
     {
       "id": 28,
@@ -805,8 +778,7 @@
       "sources": [
         "jaco-life"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 29,
@@ -834,8 +806,7 @@
         "stanley",
         "stanley-school"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 30,
@@ -862,8 +833,7 @@
       "sources": [
         "stanley"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 31,
@@ -890,8 +860,7 @@
       "sources": [
         "anthony-race"
       ],
-      "version": "対象はElegant Gypsyの1977年スタジオ版。後年のライブ版とは区別。",
-      "spotify": ""
+      "version": "対象はElegant Gypsyの1977年スタジオ版。後年のライブ版とは区別。"
     },
     {
       "id": 32,
@@ -919,8 +888,7 @@
         "clouds",
         "chaka"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 33,
@@ -948,8 +916,7 @@
         "jeff",
         "bruford"
       ],
-      "version": "対象はBrufordのGradually Going Tornado。Jeff Berlin名義の後年の再録と分ける。",
-      "spotify": ""
+      "version": "対象はBrufordのGradually Going Tornado。Jeff Berlin名義の後年の再録と分ける。"
     },
     {
       "id": 34,
@@ -974,10 +941,10 @@
         "音像"
       ],
       "sources": [
-        "marcus"
+        "marcus",
+        "sanborn-voyeur"
       ],
-      "version": "対象はDavid SanbornのVoyeur。Marcus Miller名義のライブ版も良いが、まず録音をそろえて比較する。",
-      "spotify": ""
+      "version": "対象はDavid Sanbornの1981年『Voyeur』のスタジオ録音（約3分14秒）。Spotifyリンクは同じ曲の短い版が収録された2018年の再発コンピレーション。プレイリストの約6分27秒のライブ版は対象外。"
     },
     {
       "id": 35,
@@ -1004,8 +971,7 @@
       "sources": [
         "patitucci"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 36,
@@ -1033,8 +999,7 @@
         "willis",
         "face-first"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 37,
@@ -1062,8 +1027,7 @@
         "beatles",
         "motown"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 38,
@@ -1090,8 +1054,7 @@
       "sources": [
         "zeppelin"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 39,
@@ -1118,8 +1081,7 @@
       "sources": [
         "squire"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 40,
@@ -1146,8 +1108,7 @@
       "sources": [
         "rush"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 41,
@@ -1174,8 +1135,7 @@
       "sources": [
         "police"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 42,
@@ -1202,8 +1162,7 @@
       "sources": [
         "tina"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 43,
@@ -1230,8 +1189,7 @@
       "sources": [
         "levin"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 44,
@@ -1258,8 +1216,7 @@
       "sources": [
         "pino-1986"
       ],
-      "version": "対象はPaul Youngの1983年版。Marvin Gayeの原曲とは録音もベーシストも異なる。",
-      "spotify": ""
+      "version": "対象はPaul Youngの1983年版。Marvin Gayeの原曲とは録音もベーシストも異なる。"
     },
     {
       "id": 45,
@@ -1286,8 +1243,7 @@
       "sources": [
         "pino-chicken"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 46,
@@ -1314,8 +1270,7 @@
       "sources": [
         "flea"
       ],
-      "version": "",
-      "spotify": ""
+      "version": ""
     },
     {
       "id": 47,
@@ -1343,8 +1298,7 @@
         "vulf",
         "cory-dean"
       ],
-      "version": "",
-      "spotify": "1oOD1pV43cV9sHg97aBdLs"
+      "version": ""
     },
     {
       "id": 48,
@@ -1371,8 +1325,7 @@
       "sources": [
         "thundercat"
       ],
-      "version": "対象は2015年の録音（Drunk再収録も比較対象）。Buddy Milesの同名曲とは別曲。",
-      "spotify": ""
+      "version": "対象は2015年の録音（Drunk再収録も比較対象）。Buddy Milesの同名曲とは別曲。"
     }
   ],
   "days": [
@@ -1701,8 +1654,16 @@
       "url": "https://www.musicradar.com/news/a-bassists-guide-to-chuck-rainey"
     },
     "freddie": {
-      "label": "Forget Me Nots credits — Apple Music",
-      "url": "https://music.apple.com/us/song/1319577861"
+      "label": "Freddie Washington on Forget Me Nots — Bass Player interview",
+      "url": "https://www.guitarworld.com/features/freddie-washington-on-forget-me-nots"
+    },
+    "paul-interview": {
+      "label": "Paul Jackson on Head Hunters and his Telecaster Bass — Bass Player interview",
+      "url": "https://www.guitarworld.com/features/paul-jackson-on-herbie-hancocks-watermelon-man"
+    },
+    "sanborn-voyeur": {
+      "label": "Voyeur original album track list — Warner Music Japan",
+      "url": "https://wmg.jp/david-sanborn/discography/12125"
     },
     "zender": {
       "label": "Stuart Zender on Virtual Insanity",
@@ -1774,7 +1735,7 @@
     },
     "zeppelin": {
       "label": "Led Zeppelin II — Led Zeppelin official",
-      "url": "https://www.ledzeppelin.com/?frontpage=true"
+      "url": "https://discography.ledzeppelin.com/lz2"
     },
     "squire": {
       "label": "Chris Squire on Roundabout — Yes official",
@@ -1785,12 +1746,12 @@
       "url": "https://www.rush.com/albums/moving-pictures/"
     },
     "police": {
-      "label": "The Police official",
-      "url": "https://www.thepolice.com/"
+      "label": "Reggatta de Blanc — The Police official",
+      "url": "https://store.thepolice.com/products/the-police-regatta-de-blanc-lp-2019-reissue"
     },
     "tina": {
-      "label": "Talking Heads official",
-      "url": "https://www.talkingheadsofficial.com/"
+      "label": "Talking Heads: 77 — official album information",
+      "url": "https://store.talkingheadsofficial.com/products/talking-heads-77-2lp"
     },
     "levin": {
       "label": "Tony Levin on Sledgehammer",
@@ -1805,8 +1766,8 @@
       "url": "https://musicbrainz.org/release/c38e2ae2-ed32-4e8d-aa4a-4c8bac3bec64"
     },
     "flea": {
-      "label": "Red Hot Chili Peppers official",
-      "url": "https://redhotchilipeppers.com/"
+      "label": "One Hot Minute — Red Hot Chili Peppers official",
+      "url": "https://music.redhotchilipeppers.com/products/one-hot-minute-lp"
     },
     "vulf": {
       "label": "Dean Town official audio",
@@ -1881,7 +1842,7 @@
   "glossary": [
     [
       "音価",
-      "音が始まってから終わるまでの長さ。譜面上の長さだけでなく、ミュート、減衰、録音上の響きまで耳で確認する。"
+      "譜面上では音符が占める長さ。実際に耳へ届く発音の長さはミュート、減衰、録音処理でも変わる。この教材では両者を区別して聴く。"
     ],
     [
       "アタック",
@@ -1901,7 +1862,7 @@
     ],
     [
       "ユニゾン",
-      "複数の楽器が同じ、または近い線を共有すること。音程だけでなくアタックと休符の始まりまでが表現になる。"
+      "複数の楽器が同じ高さの音や同じ旋律を一緒に奏でること。オクターブ違いの重ねや似た別旋律は区別する。発音と休符も聴く。"
     ],
     [
       "反復",
@@ -2042,7 +2003,7 @@
       "bio": "The Brothers Johnsonの一員で、Michael Jacksonをはじめ多数の録音に参加。高速で正確なスラップと、ポップスに収まる構成力を両立した。",
       "gear": "Music Man StingRayの代表的奏者。アクティブ回路とハムバッカーの強い出力を利用し、低域と鋭いアタックを同時に出す。",
       "style": "親指の連打とプルを細かな16分へ組み込みつつ、コードの変化と歌の区切りを明確にする。技巧がアレンジの推進力になる。",
-      "technique": "スラップ、ダブルサム的な往復、強いプル、ゴーストを高速で切り替える。主要音のアクセントを保ち、全音を同じ強さにしない。",
+      "technique": "『Stomp!』では指弾きから親指のスラップへ展開し、プルや軽い音を交えて強弱を作る。資料で確認できないダブルサム奏法を、この録音の事実として断定しない。",
       "sound": "強い低域、金属的な高域、速い立ち上がり。ミックスの中で一瞬で識別できる、アクティブベースらしい鮮明さ。",
       "sources": [
         "louis"
@@ -2090,9 +2051,9 @@
     },
     "Freddie Washington": {
       "bio": "Patrice Rushenとの仕事で知られ、その後Steely Danなど多数のツアー／録音に参加。R&Bの洗練とストリート感の両方を持つ。",
-      "gear": "Fender Jazz Bass系をはじめとする4弦・5弦を使用。明るいアタックを保ちつつ、低域をタイトに整理するセットが代表的。",
+      "gear": "『Forget Me Nots』では本人の取材記事によれば1972年製Fender Precision Bassを使用。APIコンソールへ直接入力し、dbx 160で圧縮した。ほかの時期の使用楽器と区別する。",
       "style": "16分のシンコペーションを細かく置きながら、ボーカルのフックを邪魔しない。短いモチーフがコード進行を横断する。",
-      "technique": "指弾き、ゴースト、軽いスラップを滑らかに切り替える。強い音と軽い音の差で、譜面以上の跳ねを作る。",
+      "technique": "『Forget Me Nots』では反復するフックのリズムを意識し、ブリッジでは左手でミュートした指弾きへ切り替える、と本人が説明している。強い音と軽い音の差に注目する。",
       "sound": "クリアな中高域、締まった低域、軽快なゴースト。都会的だが冷たすぎず、身体に近い音。",
       "sources": [
         "freddie"
@@ -2110,12 +2071,13 @@
     },
     "Paul Jackson": {
       "bio": "Herbie HancockのHeadhunters期を支え、ジャズとファンクの即興的な接続を決定づけた。ドラマーとの関係から、その場でリフを成長させる奏者。",
-      "gear": "Fender Jazz Bass系の4弦が代表的。ブリッジ側の輪郭を活かし、低音楽器でありながら細かなリズムを読ませる。",
+      "gear": "Herbie HancockのHead Hunters期には、改造Fender Telecaster Bass『Geraldine』を使用したと本人が説明している。ピックアップと出力を改造した個体で、Jazz Bass一般の音色として説明しない。",
       "style": "固定したリフと即興の境界が曖昧。モチーフを保ちながら音の位置、長さ、アクセントを変え、バンド全体の会話を更新する。",
       "technique": "強い指弾き、ゴースト、ハンマリング、短いミュートを使用。右手を打楽器のように使うが、ピッチの歌い方も失わない。",
       "sound": "乾いて鋭い中域と、跳ね返る低音。ドラムと分離して聞こえながら、二人で一つの複合リズムになる。",
       "sources": [
-        "herbie"
+        "herbie",
+        "paul-interview"
       ]
     },
     "Alphonso Johnson": {
