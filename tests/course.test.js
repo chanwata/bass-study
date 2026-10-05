@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const COURSE=JSON.parse(fs.readFileSync('src/course.json','utf8'));
 COURSE.rigNotes=JSON.parse(fs.readFileSync('src/rig_notes.json','utf8'));
+COURSE.youtubeByTrack=JSON.parse(fs.readFileSync('src/youtube.json','utf8'));
 const source=fs.readFileSync('src/app.js','utf8');
 function boot(storage,options={}){
   const element=()=>({hidden:true,textContent:'',value:'',classList:{toggle(){}},addEventListener(){}});
@@ -64,14 +65,20 @@ test('Spotify order is a lookup index into the themed lesson sequence',()=>{
   assert.match(index,/学習はDay 1〜14を順に進め/);
   assert.match(index,/6曲目と34曲目/);
 });
-test('track embeds expose playlist and exact recording separately, with mismatch warning',()=>{
+test('48 YouTube posters and retained Spotify recording links resolve separately',()=>{
   const ctx=boot({value:'{}'});
   const playlist=`https://open.spotify.com/playlist/${COURSE.playlist}`;
+  assert.deepEqual(Object.keys(COURSE.youtubeByTrack).map(Number),COURSE.tracks.map(t=>t.id));
   for(const track of COURSE.tracks){
-    const html=vm.runInContext(`spotifyPlayer(COURSE.tracks[${track.id-1}])`,ctx);
+    const html=vm.runInContext(`videoPlayer(COURSE.tracks[${track.id-1}])`,ctx);
+    const youtube=COURSE.youtubeByTrack[track.id];
+    assert.match(youtube,/^[A-Za-z0-9_-]{11}$/);
+    assert.ok(html.includes(`data-youtube="${youtube}"`),track.id);
+    assert.ok(html.includes(`https://i.ytimg.com/vi/${youtube}/hqdefault.jpg`),track.id);
+    assert.ok(html.includes(`href="https://www.youtube.com/watch?v=${youtube}"`),track.id);
     assert.ok(html.includes(`href="${playlist}"`),track.id);
     assert.ok(html.includes(`href="https://open.spotify.com/track/${COURSE.spotifyByTrack[track.id]}"`),track.id);
-    assert.equal(html.includes('プレイリストに入っているこの曲は別の録音版です'),[6,34].includes(track.id),track.id);
+    assert.equal(html.includes('元のSpotifyプレイリストに入っている録音は教材の指定版と異なります'),[6,34].includes(track.id),track.id);
   }
 });
 test('all 39 players have distinct rig exercises and cited factual rig details resolve',()=>{

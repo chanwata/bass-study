@@ -18,10 +18,19 @@
 .track-check,.complete-check{min-height:44px;padding:7px 10px;border-radius:8px}
 .button-link,.quiet,.extra-nav a,.lesson-footer a,.profile-tracks a{display:inline-flex;align-items:center;min-height:44px}
 .today-tracks a{min-height:44px}
+.today-tracks img{display:block;width:72px;aspect-ratio:16/9;object-fit:cover;border-radius:6px;flex:none}
+.video-poster{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;overflow:hidden;border-radius:10px;background:#101820;color:#fff}
+.video-poster img{display:block;width:100%;height:100%;object-fit:cover}
+.video-poster::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,#0009)}
+.video-play{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:72px;height:50px;border-radius:14px;background:#df2027;color:#fff;font-size:1.4rem}
+.video-poster-label{position:absolute;z-index:1;bottom:12px;left:16px;font-size:.9rem;font-weight:700}
+.track-player iframe{width:100%;height:auto;aspect-ratio:16/9;max-width:100%}
+.track-player .version-alert{color:#843521;background:#fff4ed}
 .track-player iframe{max-width:100%}
 .track-player-links{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin:10px 0}
 .track-player-links a{display:inline-flex;align-items:center;min-height:44px;font-size:.86rem}
 .track-player-links .button-link{background:#e7f1ef;border-color:#b5d4cd;color:var(--teal);font-weight:700}
+@media(min-width:761px) and (max-width:1040px){.listening-panel{display:block}.player-note,.listening-method,.today-tracks,.local-note{margin-top:16px}}
 @media(max-width:760px){
   .sidebar{padding:13px 18px}
   .brand{max-width:65%}
@@ -51,5 +60,5 @@
   .rhythm-grid{gap:2px}
   .rhythm-cell{font-size:.64rem;padding:9px 0}
 }
-@media(max-width:360px){.sidebar #day-nav{grid-template-columns:1fr}.data-actions{gap:0}.quiet{font-size:.74rem;padding:6px}.track-player iframe{height:152px}}
+@media(max-width:360px){.sidebar #day-nav{grid-template-columns:1fr}.data-actions{gap:0}.quiet{font-size:.74rem;padding:6px}}
 @media print{.menu-toggle,.lesson-jumps,.quick-route,#metronome-toggle{display:none!important}}

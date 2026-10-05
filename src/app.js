@@ -37,6 +37,7 @@ function toast(msg){const el=$('#toast');el.textContent=msg;el.hidden=false;clea
 function dayHash(n){return `#day-${String(n).padStart(2,'0')}`}
 function trackHash(id){const day=COURSE.days.find(d=>d.tracks.includes(+id));return `${dayHash(day.id)}/track-${id}`}
 function spotifyId(track){return COURSE.spotifyByTrack[track.id]}
+function youtubeId(track){return COURSE.youtubeByTrack[track.id]}
 function updateProgress(){const n=Object.values(state.days||{}).filter(Boolean).length;$('#progress').value=n;$('#progress-label').textContent=`${n} / 14日`;$$('.day-link').forEach((a,i)=>{const c=$('.day-check',a);if(c)c.textContent=state.days[i+1]?'✓':''})}
 function renderNav(){
   const groups=[['SOUL / FUNK',COURSE.days.slice(0,6)],['FUSION',COURSE.days.slice(6,10)],['ROCK / MODERN',COURSE.days.slice(10)]];
@@ -58,11 +59,13 @@ function profileGrid(profile,name){return `<div class="profile-grid">
   <div><h5>楽器の使い方・奏法</h5><p>${esc(profile.technique)}</p></div>
   <div class="profile-sound"><h5>音の特徴</h5><p>${esc(profile.sound)}</p></div>
   </div>${rigPanel(name)}${profileSourceLinks(profile)}`}
-function spotifyPlayer(track){
-  const id=spotifyId(track);
-  if(!id)return '';
+function videoPlayer(track){
+  const id=youtubeId(track);
+  if(!id)return '<p class="version-alert">この録音のYouTube動画は未確認です。Spotifyの指定録音リンクを使ってください。</p>';
+  const spotify=spotifyId(track);
   const mismatch=[6,34].includes(track.id);
-  return `<div class="track-player"><span class="eyebrow">LISTEN HERE · この曲の指定録音</span><iframe title="Spotifyで${esc(track.artist)}「${esc(track.title)}」を再生" src="https://open.spotify.com/embed/track/${id}?utm_source=generator&amp;theme=0" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="track-player-links"><a class="button-link" href="https://open.spotify.com/playlist/${esc(COURSE.playlist)}" target="_blank" rel="noopener noreferrer">元のプレイリストをSpotifyで開く</a><a href="https://open.spotify.com/track/${id}" target="_blank" rel="noopener noreferrer">この指定録音をSpotifyで開く</a></div>${mismatch?'<p class="version-alert">注意：プレイリストに入っているこの曲は別の録音版です。教材の対象は上の個別プレーヤー／指定録音リンクを使ってください。</p>':''}<p>埋め込みプレーヤー内のSpotifyボタンの行き先はSpotify側で決まります。プレイリストへは上のリンクを使ってください。フル再生はログイン・プラン・地域・ブラウザに依存します。</p></div>`;
+  const caution=[30,35,36].includes(track.id)?'<p class="version-alert">この曲のYouTube動画は別版・権利者以外の投稿である可能性があります。アルバム名・演奏時間を確認し、違う版ならSpotifyの指定録音を使ってください。</p>':'';
+  return `<div class="track-player"><span class="eyebrow">WATCH & LISTEN · YouTubeで聴く</span><button class="video-poster" type="button" data-youtube="${id}" data-video-title="${esc(track.artist)} — ${esc(track.title)}" aria-label="YouTubeで${esc(track.artist)}「${esc(track.title)}」の再生画面を開く"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="video-play" aria-hidden="true">▶</span><span class="video-poster-label">タップして再生</span></button><div class="track-player-links"><a class="button-link" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>${spotify?`<a href="https://open.spotify.com/track/${spotify}" target="_blank" rel="noopener noreferrer">指定録音をSpotifyで開く</a>`:''}<a href="https://open.spotify.com/playlist/${esc(COURSE.playlist)}" target="_blank" rel="noopener noreferrer">元のSpotifyプレイリスト</a></div>${mismatch?'<p class="version-alert">元のSpotifyプレイリストに入っている録音は教材の指定版と異なります。ここでは曲カードの「対象録音」を確認して聴いてください。</p>':''}${caution}<p>YouTubeはログインなしでページ内再生できますが、権利者の埋め込み設定・地域・年齢制限・広告により再生できない場合があります。その場合は「YouTubeで開く」かSpotifyの指定録音をお試しください。</p></div>`;
 }
 function trackCard(track, dayId){
   const profile=COURSE.bassists[track.bassist];
@@ -72,7 +75,7 @@ function trackCard(track, dayId){
   return `<details class="track-card" id="track-${track.id}">
   <summary><span class="track-index">${String(track.id).padStart(2,'0')}</span><span class="track-summary"><h3>${esc(track.title)}</h3><p>${esc(track.artist)} · Bass: ${esc(track.bassist)}</p></span><span class="disclosure" aria-hidden="true">＋</span></summary>
   <div class="track-body">
-    <div class="recording"><b>対象録音</b>${esc(track.album)} (${track.year}) · Bass: ${esc(track.bassist)}</div>${version}${spotifyPlayer(track)}
+    <div class="recording"><b>対象録音</b>${esc(track.album)} (${track.year}) · Bass: ${esc(track.bassist)}</div>${version}${videoPlayer(track)}
     <p class="track-thesis">${esc(track.thesis)}</p><p>${esc(track.background)}</p><p>${esc(track.analysis)}</p>
     ${profile?`<details class="bassist-profile"><summary><span>WHO PLAYS IT?</span><b>${esc(track.bassist)}：人物・機材・音</b></summary><div class="bassist-profile-body">${profileGrid(profile,track.bassist)}<p class="gear-caveat">機材はキャリアを通した代表例。対象録音で使われた個体を示す場合は本文で明記しています。</p></div></details>`:''}
     <h4 class="track-subhead">3回目までに聴くこと</h4><p class="clip-help">最初の観察区間：${esc(track.listens[0])} 版によって時刻が変わるため、歌・楽器の入りを目印に区切ります。</p><ol class="listen-steps">${track.listens.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
@@ -133,7 +136,7 @@ function comparePage(){return `<article><header class="lesson-heading"><span cla
 function foundationsPage(){return `<article><header class="lesson-heading"><span class="eyebrow">FOUNDATIONS</span><h1>基礎と用語</h1><p class="lead">エレキベースのラインを、音程の列より広く聴くための最小セット。</p></header><section class="panel"><h2>六つの観察軸</h2><div class="fundamental-list">${[['音価','いつ始まり、いつ消えるか。'],['アタック','音の頭が丸いか、硬いか、軽いか。'],['休符','誰のために空いているか。'],['キック','一致、補完、先行のどれか。'],['スネア','前後どちらに重心を感じるか。'],['歌','下支え、応答、対旋律のどれか。']].map(x=>`<article><h3>${x[0]}</h3><p>${x[1]}</p></article>`).join('')}</div></section><section class="panel"><h2>用語</h2><dl>${COURSE.glossary.map(([a,b])=>`<div class="glossary-item"><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl></section><section class="panel"><h2>コピーする8曲の選び方</h2><ol><li>旋律：BernadetteかSomethingから1曲。</li><li>余白：Dock of the BayかWalking on the Moonから1曲。</li><li>反復：I'll Take You There、Good Times、Psycho Killerから1曲。</li><li>16分：What Is Hip?、Stomp!、Forget Me Notsから1曲。</li><li>Jazz-funk：Actual ProofかCucumber Slumberから1曲。</li><li>主旋律：Teen Town、Joe Frazier、Dean Townから1曲。</li><li>歌もの職人：Rock Steady、Clouds、Chicken Greaseから1曲。</li><li>自分が説明できず、何度も戻りたくなる曲を1曲。</li></ol><p>難易度の均等化より、八つの違う役割を身体へ入れることを優先する。</p></section></article>`}
 function practiceTemplate(){return `<section class="panel"><span class="eyebrow">START PLAYING</span><h2>最初の4小節：原曲のコピーではない練習用の例</h2><p>4/4拍子・ゆっくり72 BPM。<b>Am7｜Dm7｜G7｜Cmaj7</b>を1小節ずつ繰り返す。最初は各小節の1拍目と3拍目にルート（A、D、G、C）を1音ずつ置き、残りは休む。次は3拍目を抜いて、歌が入る余白を作る。最後に4拍目の裏へ次の小節のルートを短く足し、弾かない版と録音して比較する。</p><p class="muted">音程が難しければAの1音だけで、発音と休符の位置を再現。原曲の正しいベースラインを示す譜例ではありません。</p></section>`}
 function sourcesPage(){const used=[...new Set([...COURSE.tracks.flatMap(t=>t.sources),...Object.values(COURSE.bassists).flatMap(p=>p.sources||[])])];return `<article><header class="lesson-heading"><span class="eyebrow">RECORDING NOTES & SOURCES</span><h1>録音情報と参考資料</h1><p class="lead">録音と機材の出典を示す。本文の聴感分析と練習の提案は、引用資料に書かれた演奏者本人の意図とは区別する。公式トップページなどの一般資料だけでは、特定録音の使用機材を確定できない。</p></header><section class="panel"><h2>録音版の注意</h2><p><b>Memphis Soul Stew：</b>1967年の短いスタジオ版はTommy Cogbill。Jerry Jemmottを聴く教材では、1971年のLive at Fillmore West版を指定。元のプレイリスト6曲目は別版です。</p><p><b>Voices Inside：</b>Willie Weeksの長いソロがあるアルバムLiveの録音を対象にする。</p><p><b>Joe Frazier：</b>BrufordのGradually Going Tornado版。Jeff Berlinによる後年のRound 2／3と分ける。</p><p><b>Run for Cover：</b>David SanbornのVoyeur期の約3分14秒のスタジオ録音を聴く。埋め込みは2018年の再発盤から、元のプレイリスト34曲目は1984年のライブ版。</p></section><section class="panel"><h2>参考リンク</h2><ul>${used.map(k=>{const s=COURSE.sources[k];return s?`<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`:''}).join('')}${Object.values(COURSE.rigNotes.references).map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ul></section></article>`}
-function updateSidePanel(day){if(!day){$('#today-tracks').innerHTML='';return}const tracks=day.tracks.map(id=>trackById.get(id));$('#today-tracks').innerHTML=`<h3>DAY ${day.id}の曲</h3>${tracks.map(t=>`<a href="${trackHash(t.id)}" data-jump-track="${t.id}"><span>${String(t.id).padStart(2,'0')}</span><span>${esc(t.title)}<br><span class="muted">${esc(t.bassist)}</span></span></a>`).join('')}`}
+function updateSidePanel(day){if(!day){$('#today-tracks').innerHTML='';return}const tracks=day.tracks.map(id=>trackById.get(id));$('#today-tracks').innerHTML=`<h3>DAY ${day.id}のYouTube音源</h3>${tracks.map(t=>`<a href="${trackHash(t.id)}" data-jump-track="${t.id}"><img src="https://i.ytimg.com/vi/${youtubeId(t)}/mqdefault.jpg" alt="" loading="lazy"><span>${String(t.id).padStart(2,'0')} ${esc(t.title)}<br><span class="muted">${esc(t.bassist)}</span></span></a>`).join('')}`}
 function markActive(hash){$$('.day-link,.extra-nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===hash))}
 function render(){
   stopMetronome();
@@ -146,7 +149,9 @@ function render(){
   $('#main').innerHTML=html;markActive(day?dayHash(day.id):hash.startsWith('#playlist')?'#playlist':hash);updateSidePanel(day);document.title=`${day?`Day ${day.id} ${day.title}`:$('#main h1')?.textContent} — BASS LISTENING LAB`;window.scrollTo(0,0);bindPage(day);
   if(openTrack){const card=$(`#track-${openTrack}`);card.open=true;if(day)requestAnimationFrame(()=>card.scrollIntoView({block:'start'}))}
 }
+let activeVideo=null;
 function bindPage(day){
+  $$('[data-youtube]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.youtube;if(!/^[A-Za-z0-9_-]{11}$/.test(id))return;if(activeVideo?.frame.isConnected)activeVideo.frame.replaceWith(activeVideo.button);const frame=document.createElement('iframe');frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;frame.title=`YouTube: ${button.dataset.videoTitle}`;frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';button.replaceWith(frame);activeVideo={frame,button};button.closest('.track-card')?.addEventListener('toggle',e=>{if(!e.currentTarget.open&&frame.isConnected)frame.replaceWith(button)})}));
   $$('[data-track]').forEach(x=>x.addEventListener('change',e=>save('tracks',e.target.dataset.track,e.target.checked)));
   $$('[data-day-complete]').forEach(x=>x.addEventListener('change',e=>{save('days',e.target.dataset.dayComplete,e.target.checked);renderNav();markActive(dayHash(day.id))}));
   $$('[data-day-note]').forEach(x=>x.addEventListener('input',e=>save('notes',e.target.dataset.dayNote,e.target.value)));
