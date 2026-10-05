@@ -2,6 +2,13 @@
 .data-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px}
 #save-status{color:var(--teal);font-size:.78rem;margin-right:10px}
 .quick-route{background:#e7f1ef;border:1px solid #b5d4cd;border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.order-note{background:#f0f5f9;border-left:4px solid var(--teal);padding:11px 14px;border-radius:4px;font-size:.88rem;line-height:1.7;margin:15px 0 0}
+.order-note a{font-weight:700}
+.playlist-list{display:grid;gap:8px}
+.playlist-list .catalog-row{margin:0}
+.playlist-nav{display:flex;gap:10px;align-items:stretch;justify-content:space-between;margin:16px 0 20px}
+.playlist-nav>*{min-width:0;flex:1}
+.playlist-nav a{display:flex;align-items:center;justify-content:center;padding:10px 12px;min-height:48px;background:#fff;border:1px solid var(--line);border-radius:9px;text-align:center;font-size:.88rem;line-height:1.45}
 .quick-route h2{font-size:1rem;margin:0 0 5px;color:var(--teal)}
 .quick-route p{font-size:.9rem;line-height:1.7;margin:0}
 .lesson-jumps{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
@@ -43,6 +50,8 @@
   .lesson-jumps{margin-bottom:13px}
   .lesson-jumps a{flex:1;justify-content:center;padding:8px}
   .quick-route{padding:16px}
+  .playlist-nav{gap:5px}
+  .playlist-nav a{font-size:.78rem;padding:7px;overflow-wrap:anywhere}
   .lesson-footer a{min-height:44px;padding:7px 0}
   .rhythm-grid{gap:2px}
   .rhythm-cell{font-size:.64rem;padding:9px 0}
