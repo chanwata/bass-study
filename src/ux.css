@@ -15,6 +15,9 @@
 .button-link,.quiet,.extra-nav a,.lesson-footer a,.profile-tracks a{display:inline-flex;align-items:center;min-height:44px}
 .today-tracks a{min-height:44px}
 .track-player iframe{max-width:100%}
+.track-player-links{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin:10px 0}
+.track-player-links a{display:inline-flex;align-items:center;min-height:44px;font-size:.86rem}
+.track-player-links .button-link{background:#e7f1ef;border-color:#b5d4cd;color:var(--teal);font-weight:700}
 @media(max-width:760px){
   .sidebar{padding:13px 18px}
   .brand{max-width:65%}

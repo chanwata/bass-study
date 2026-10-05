@@ -56,6 +56,16 @@ test('deep links and day-specific reflection examples',()=>{
   assert.equal(vm.runInContext('Object.keys(answerExamples).length',ctx),14);
   assert.equal(vm.runInContext('spotifyId(COURSE.tracks[5])',ctx),'4imW8rgHwQ3rAmYoeGxW6F');
 });
+test('track embeds expose playlist and exact recording separately, with mismatch warning',()=>{
+  const ctx=boot({value:'{}'});
+  const playlist=`https://open.spotify.com/playlist/${COURSE.playlist}`;
+  for(const track of COURSE.tracks){
+    const html=vm.runInContext(`spotifyPlayer(COURSE.tracks[${track.id-1}])`,ctx);
+    assert.ok(html.includes(`href="${playlist}"`),track.id);
+    assert.ok(html.includes(`href="https://open.spotify.com/track/${COURSE.spotifyByTrack[track.id]}"`),track.id);
+    assert.equal(html.includes('プレイリストに入っているこの曲は別の録音版です'),[6,34].includes(track.id),track.id);
+  }
+});
 test('all 39 players have distinct rig exercises and cited factual rig details resolve',()=>{
   assert.deepEqual(Object.keys(COURSE.rigNotes.profiles).sort(),Object.keys(COURSE.bassists).sort());
   for(const [name,rig] of Object.entries(COURSE.rigNotes.profiles)){

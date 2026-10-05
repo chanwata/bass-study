@@ -61,7 +61,8 @@ function profileGrid(profile,name){return `<div class="profile-grid">
 function spotifyPlayer(track){
   const id=spotifyId(track);
   if(!id)return '';
-  return `<div class="track-player"><span class="eyebrow">LISTEN HERE · この曲の指定録音</span><iframe title="Spotifyで${esc(track.artist)}「${esc(track.title)}」を再生" src="https://open.spotify.com/embed/track/${id}?utm_source=generator&amp;theme=0" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><p>試聴のみ／再生不可の場合は下のSpotifyリンクを開く。フル再生はSpotify側のログイン・プラン・地域・ブラウザに依存します。</p></div>`;
+  const mismatch=[6,34].includes(track.id);
+  return `<div class="track-player"><span class="eyebrow">LISTEN HERE · この曲の指定録音</span><iframe title="Spotifyで${esc(track.artist)}「${esc(track.title)}」を再生" src="https://open.spotify.com/embed/track/${id}?utm_source=generator&amp;theme=0" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="track-player-links"><a class="button-link" href="https://open.spotify.com/playlist/${esc(COURSE.playlist)}" target="_blank" rel="noopener noreferrer">元のプレイリストをSpotifyで開く</a><a href="https://open.spotify.com/track/${id}" target="_blank" rel="noopener noreferrer">この指定録音をSpotifyで開く</a></div>${mismatch?'<p class="version-alert">注意：プレイリストに入っているこの曲は別の録音版です。教材の対象は上の個別プレーヤー／指定録音リンクを使ってください。</p>':''}<p>埋め込みプレーヤー内のSpotifyボタンの行き先はSpotify側で決まります。プレイリストへは上のリンクを使ってください。フル再生はログイン・プラン・地域・ブラウザに依存します。</p></div>`;
 }
 function trackCard(track, dayId){
   const profile=COURSE.bassists[track.bassist];
