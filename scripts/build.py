@@ -1,6 +1,7 @@
 import json, pathlib, re
 root = pathlib.Path(__file__).resolve().parents[1]
 data = json.loads((root / 'src/course.json').read_text())
+data['rigNotes'] = json.loads((root / 'src/rig_notes.json').read_text())
 template = (root / 'src/template.html').read_text()
 payload = json.dumps(data, ensure_ascii=False).replace('<', '\\u003c')
 page = template.replace('/* COURSE_DATA */', 'const COURSE = ' + payload + ';')

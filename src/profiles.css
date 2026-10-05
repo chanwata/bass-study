@@ -10,6 +10,16 @@
 .profile-grid h5,.profile-card-body>h5{font-size:.78rem;letter-spacing:.06em;color:var(--teal);margin:0 0 7px}
 .profile-grid p{font-size:.9rem;line-height:1.85;margin:0}
 .gear-caveat{font-size:.76rem!important;line-height:1.75!important;color:var(--muted);margin:13px 0 0!important}
+.rig-panel{border:1px solid #bdd6d0;border-radius:9px;background:#eaf5f2;margin:15px 0;overflow:hidden}
+.rig-panel>summary{cursor:pointer;padding:13px 15px;font-weight:700;color:var(--teal);min-height:44px}
+.rig-body{padding:0 15px 15px}
+.rig-disclaimer{font-size:.8rem;line-height:1.7;margin:3px 0 12px;color:#284d4a}
+.rig-body dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0}
+.rig-body dl>div{background:#fff;border:1px solid #d3e5e1;border-radius:7px;padding:11px 12px;min-width:0}
+.rig-body dt{font-weight:800;color:var(--teal);font-size:.78rem;margin-bottom:5px}
+.rig-body dd{margin:0;font-size:.86rem;line-height:1.75;overflow-wrap:anywhere}
+.rig-body>p:last-child{margin-bottom:0}
+.rig-refs{font-size:.78rem;line-height:1.6}
 .profile-card{background:#fff;border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden}
 .profile-card>summary{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 22px;cursor:pointer;list-style:none}
 .profile-card>summary b{display:block;font-size:1.08rem;margin-bottom:5px}
@@ -27,5 +37,5 @@
   .profile-card>summary{align-items:flex-start;padding:17px}
   .profile-open{white-space:normal;text-align:right}
   .profile-card-body{padding:0 17px 17px}
+  .rig-body dl{grid-template-columns:1fr}
 }
-

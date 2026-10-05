@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
 const COURSE=JSON.parse(fs.readFileSync('src/course.json','utf8'));
+COURSE.rigNotes=JSON.parse(fs.readFileSync('src/rig_notes.json','utf8'));
 const source=fs.readFileSync('src/app.js','utf8');
 function boot(storage,options={}){
   const element=()=>({hidden:true,textContent:'',value:'',classList:{toggle(){}},addEventListener(){}});
@@ -54,6 +55,16 @@ test('deep links and day-specific reflection examples',()=>{
   assert.equal(vm.runInContext('trackHash(34)',ctx),'#day-10/track-34');
   assert.equal(vm.runInContext('Object.keys(answerExamples).length',ctx),14);
   assert.equal(vm.runInContext('spotifyId(COURSE.tracks[5])',ctx),'4imW8rgHwQ3rAmYoeGxW6F');
+});
+test('all 39 players have distinct rig exercises and cited factual rig details resolve',()=>{
+  assert.deepEqual(Object.keys(COURSE.rigNotes.profiles).sort(),Object.keys(COURSE.bassists).sort());
+  for(const [name,rig] of Object.entries(COURSE.rigNotes.profiles)){
+    for(const field of ['hands','setup','fx','check'])assert.ok(rig[field]?.length>25,`${name}: ${field}`);
+    for(const key of rig.refs||[])assert.match(COURSE.rigNotes.references[key]?.url||'',/^https:\/\//);
+  }
+  const ctx=boot({value:'{}'});
+  assert.match(vm.runInContext('rigPanel("Chris Squire")',ctx),/本人談/);
+  assert.match(vm.runInContext('rigGuidePage()',ctx),/120〜180Hz/);
 });
 test('JSON backup contains notes and both check groups, and uses a clickable DOM link',async()=>{
   const storage={value:'{}'},downloaded={};
