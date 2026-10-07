@@ -51,38 +51,36 @@ function profileSourceLinks(profile){
   if(!profile?.sources?.length)return '';
   return `<div class="source-links"><b>人物資料：</b> ${profile.sources.map(k=>{const s=COURSE.sources[k];return s?`<a href="${s.url}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a>`:''}).join('')}</div>`;
 }
-function rigPanel(name){const rig=COURSE.rigNotes.profiles[name];if(!rig)return '';return `<details class="rig-panel"><summary>音作りを掘る：手・設定・エフェクト ＋</summary><div class="rig-body"><p class="rig-disclaimer">以下の設定値と接続順は<strong>自分の楽器で試す出発点</strong>。資料で確認した事実は出典を付記。原曲の録音機材やつまみ位置を復元したものではありません。</p><dl><div><dt>右手・左手</dt><dd>${esc(rig.hands)}</dd></div><div><dt>楽器・セッティング</dt><dd>${esc(rig.setup)}</dd></div><div><dt>エフェクト／信号経路</dt><dd>${esc(rig.fx)}</dd></div><div><dt>耳で判定</dt><dd>${esc(rig.check)}</dd></div></dl><p><a href="#rig-guide">設定値と接続順の読み方</a></p>${rig.refs?.length?`<p class="rig-refs">機材・奏法の出典：${rig.refs.map(k=>{const s=COURSE.rigNotes.references[k];return `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a>`}).join(' · ')}</p>`:''}</div></details>`}
-function profileGrid(profile,name){return `<div class="profile-grid">
+function rigPanel(name,inline=false){const rig=COURSE.rigNotes.profiles[name];if(!rig)return '';const body=`<div class="rig-body">${inline?'':'<p class="rig-disclaimer">以下の設定値と接続順は<strong>自分の楽器で試す出発点</strong>。資料で確認した事実は出典を付記。原曲の録音機材やつまみ位置を復元したものではありません。</p>'}<dl><div><dt>右手・左手</dt><dd>${esc(rig.hands)}</dd></div><div><dt>楽器・セッティング</dt><dd>${esc(rig.setup)}</dd></div><div><dt>エフェクト／信号経路</dt><dd>${esc(rig.fx)}</dd></div><div><dt>耳で判定</dt><dd>${esc(rig.check)}</dd></div></dl><p><a href="#rig-guide">設定値と接続順の読み方</a></p>${rig.refs?.length?`<p class="rig-refs">機材・奏法の出典：${rig.refs.map(k=>{const s=COURSE.rigNotes.references[k];return `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a>`}).join(' · ')}</p>`:''}</div>`;return inline?`<section class="rig-panel"><h5>手・設定・エフェクト</h5>${body}</section>`:`<details class="rig-panel"><summary>音作りを掘る：手・設定・エフェクト ＋</summary>${body}</details>`}
+function profileGrid(profile,name,inline=false){return `<div class="profile-grid">
   <div><h5>略歴</h5><p>${esc(profile.bio)}</p></div>
   <div><h5>代表的な使用機材</h5><p>${esc(profile.gear)}</p></div>
   <div><h5>プレイスタイル</h5><p>${esc(profile.style)}</p></div>
   <div><h5>楽器の使い方・奏法</h5><p>${esc(profile.technique)}</p></div>
   <div class="profile-sound"><h5>音の特徴</h5><p>${esc(profile.sound)}</p></div>
-  </div>${rigPanel(name)}${profileSourceLinks(profile)}`}
+  </div>${rigPanel(name,inline)}${profileSourceLinks(profile)}`}
 function videoPlayer(track){
   const id=youtubeId(track);
   if(!id)return '<p class="version-alert">この録音のYouTube動画は未確認です。Spotifyの指定録音リンクを使ってください。</p>';
   const spotify=spotifyId(track);
   const mismatch=[6,34].includes(track.id);
   const caution=[30,35,36].includes(track.id)?'<p class="version-alert">この曲のYouTube動画は別版・権利者以外の投稿である可能性があります。アルバム名・演奏時間を確認し、違う版ならSpotifyの指定録音を使ってください。</p>':'';
-  return `<div class="track-player"><span class="eyebrow">WATCH & LISTEN · YouTubeで聴く</span><button class="video-poster" type="button" data-youtube="${id}" data-video-title="${esc(track.artist)} — ${esc(track.title)}" aria-label="YouTubeで${esc(track.artist)}「${esc(track.title)}」の再生画面を開く"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="video-play" aria-hidden="true">▶</span><span class="video-poster-label">タップして再生</span></button><div class="track-player-links"><a class="button-link" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>${spotify?`<a href="https://open.spotify.com/track/${spotify}" target="_blank" rel="noopener noreferrer">指定録音をSpotifyで開く</a>`:''}<a href="https://open.spotify.com/playlist/${esc(COURSE.playlist)}" target="_blank" rel="noopener noreferrer">元のSpotifyプレイリスト</a></div>${mismatch?'<p class="version-alert">元のSpotifyプレイリストに入っている録音は教材の指定版と異なります。ここでは曲カードの「対象録音」を確認して聴いてください。</p>':''}${caution}<p>YouTubeはログインなしでページ内再生できますが、権利者の埋め込み設定・地域・年齢制限・広告により再生できない場合があります。その場合は「YouTubeで開く」かSpotifyの指定録音をお試しください。</p></div>`;
+  return `<div class="track-player"><span class="eyebrow">WATCH & LISTEN · YouTubeで聴く</span><button class="video-poster" type="button" data-youtube="${id}" data-video-title="${esc(track.artist)} — ${esc(track.title)}" aria-label="YouTubeで${esc(track.artist)}「${esc(track.title)}」の再生画面を開く"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="video-play" aria-hidden="true">▶</span><span class="video-poster-label">タップして再生</span></button><div class="track-player-links"><a class="button-link" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">YouTubeで開く</a>${spotify?`<a href="https://open.spotify.com/track/${spotify}" target="_blank" rel="noopener noreferrer">指定録音をSpotifyで開く</a>`:''}</div>${mismatch?'<p class="version-alert">元のSpotifyプレイリストに入っている録音は教材の指定版と異なります。ここでは曲カードの「対象録音」を確認して聴いてください。</p>':''}${caution}</div>`;
 }
-function trackCard(track, dayId){
-  const profile=COURSE.bassists[track.bassist];
+function trackCard(track,showProfile){
+  const profile=showProfile&&COURSE.bassists[track.bassist];
   const version=track.version?`<div class="version-alert"><b>録音を確認：</b> ${esc(track.version)}</div>`:'';
-  const id=spotifyId(track);
-  const spotify=id?`https://open.spotify.com/track/${id}`:`https://open.spotify.com/search/${encodeURIComponent(track.artist+' '+track.title)}`;
-  return `<details class="track-card" id="track-${track.id}">
-  <summary><span class="track-index">${String(track.id).padStart(2,'0')}</span><span class="track-summary"><h3>${esc(track.title)}</h3><p>${esc(track.artist)} · Bass: ${esc(track.bassist)}</p></span><span class="disclosure" aria-hidden="true">＋</span></summary>
+  return `<article class="track-card" id="track-${track.id}">
+  <header class="track-heading"><span class="track-index">${String(track.id).padStart(2,'0')}</span><span class="track-summary"><h3>${esc(track.title)}</h3><p>${esc(track.artist)} · Bass: ${esc(track.bassist)}</p></span></header>
   <div class="track-body">
-    <div class="recording"><b>対象録音</b>${esc(track.album)} (${track.year}) · Bass: ${esc(track.bassist)}</div>${version}${videoPlayer(track)}
+    <div class="recording"><b>対象録音</b>${esc(track.album)} (${track.year})</div>${version}${videoPlayer(track)}
     <p class="track-thesis">${esc(track.thesis)}</p><p>${esc(track.background)}</p><p>${esc(track.analysis)}</p>
-    ${profile?`<details class="bassist-profile"><summary><span>WHO PLAYS IT?</span><b>${esc(track.bassist)}：人物・機材・音</b></summary><div class="bassist-profile-body">${profileGrid(profile,track.bassist)}<p class="gear-caveat">機材はキャリアを通した代表例。対象録音で使われた個体を示す場合は本文で明記しています。</p></div></details>`:''}
-    <h4 class="track-subhead">3回目までに聴くこと</h4><p class="clip-help">最初の観察区間：${esc(track.listens[0])} 版によって時刻が変わるため、歌・楽器の入りを目印に区切ります。</p><ol class="listen-steps">${track.listens.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
+    ${profile?`<section class="bassist-profile" aria-label="${esc(track.bassist)}の人物・機材"><div class="bassist-profile-head"><span>WHO PLAYS IT?</span><h4>${esc(track.bassist)}：人物・機材・音</h4></div><div class="bassist-profile-body">${profileGrid(profile,track.bassist,true)}</div></section>`:''}
+    <h4 class="track-subhead">3回目までに聴くこと</h4><ol class="listen-steps">${track.listens.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
     <div class="exercise"><h4>ベースを持ったら</h4><p>${esc(track.exercise)}</p><a href="#foundations">始める前の4小節テンプレートと用語</a></div>
     <p class="pitfall"><b>ここは雑に覚えない：</b> ${esc(track.pitfall)}</p>
-    <div class="track-actions"><a class="button-link" href="${spotify}" target="_blank" rel="noopener noreferrer">指定録音をSpotifyで開く</a><label class="track-check"><input type="checkbox" data-track="${track.id}" ${state.tracks[track.id]?'checked':''}> 3回聴いた</label></div>${sourceLinks(track)}
-  </div></details>`;
+    <div class="track-actions"><label class="track-check"><input type="checkbox" data-track="${track.id}" ${state.tracks[track.id]?'checked':''}> 3回聴いた</label></div>${sourceLinks(track)}
+  </div></article>`;
 }
 function rhythmLab(day){
   if(![4,5,6,13].includes(day.id))return '';
@@ -115,14 +113,14 @@ const answerExamples={
   13:'二つのPinoの録音を、音色の同一性ではなく、音を置かない判断と歌への応答で比べる。',
   14:'Dean Town：主旋律的な動き、ゴースト、反復を分け、過去の曲のどの働きと対応するかを説明する。'
 };
-function quiz(day){return `<section class="panel quiz" id="quiz"><span class="eyebrow">CHECK YOUR EAR</span><h2>聴いたあとに答える</h2><p>以下は唯一の正解ではなく、録音で検証するための回答例。違う答えでも、どの区間でそう聴こえたかを添えよう。</p><details><summary>${esc(day.question)}　回答例を見る</summary><p>${esc(answerExamples[day.id])}</p></details><details><summary>今日の曲で、一番少ない情報から曲を成立させた演奏はどれ？　考え方を見る</summary><p>音数だけで決めず、主要な1音を抜いたとき、歌・拍・和声のどれが失われるか。二曲の同じ長さの区間を比べ、理由をメモに残す。</p></details></section>`}
-function lessonPage(day){const tracks=day.tracks.map(id=>trackById.get(id));return `<article>
+function quiz(day){return `<section class="panel quiz" id="quiz"><span class="eyebrow">CHECK YOUR EAR</span><h2>聴いたあとに答える</h2><p>以下は唯一の正解ではなく、録音で検証するための回答例。違う答えでも、どの区間でそう聴こえたかを添えよう。</p><div class="quiz-item"><h3>今日の問いへの回答例</h3><p>${esc(answerExamples[day.id])}</p></div><div class="quiz-item"><h3>一番少ない情報から曲を成立させた演奏はどれ？</h3><p>音数だけで決めず、主要な1音を抜いたとき、歌・拍・和声のどれが失われるか。二曲の同じ長さの区間を比べ、理由をメモに残す。</p></div></section>`}
+function lessonPage(day){const tracks=day.tracks.map(id=>trackById.get(id));const seen=new Set();return `<article>
   <header class="lesson-heading"><span class="lesson-number">DAY ${String(day.id).padStart(2,'0')} / 14</span><h1>${esc(day.title)}</h1><p class="lead">${esc(day.subtitle)}</p><div class="lesson-meta"><span class="pill gold">${tracks.length} TRACKS</span>${[...new Set(tracks.flatMap(t=>t.tags))].slice(0,4).map(x=>`<span class="pill">${esc(x)}</span>`).join('')}</div><p class="order-note">学習はDay順・このページの曲順で進めてください。曲番号はSpotifyプレイリストで探すための番号なので、ここでは前後することがあります。<a href="#playlist">Spotify曲順の索引</a></p></header>
   <nav class="lesson-jumps" aria-label="このレッスン内を移動"><a href="#recordings" data-section="recordings">曲へ</a><a href="#quiz" data-section="quiz">振り返りへ</a><a href="#notes" data-section="notes">メモへ</a></nav>
   <section class="quick-route"><h2>まず15分で聴くなら</h2><p>${tracks.length>2?`先に${esc(tracks[0].title)}と${esc(tracks[1].title)}の冒頭から1コーラス程度を3回。残り${tracks.length-2}曲は発展編として後で聴く。`:'各曲の冒頭から1コーラス程度を3回。全編とコピーは、時間を取れる日に進める。'} 再生版が違うと時刻がずれるため、曲中の場面を目印にする。</p></section>
   <div class="goal"><span class="eyebrow">TODAY'S GOAL</span><p>${esc(day.goal)}</p></div>
   <section class="panel lecture"><span class="eyebrow">LECTURE</span><h2>耳に入れる前の地図</h2>${day.lecture.map(x=>`<p>${esc(x)}</p>`).join('')}<div class="concept"><h3>今日の問い</h3><p>${esc(day.question)}</p></div></section>
-  <div class="section-heading" id="recordings"><h2>今日の録音</h2><span class="line"></span></div>${tracks.map(t=>trackCard(t,day.id)).join('')}
+  <div class="section-heading" id="recordings"><h2>今日の録音</h2><span class="line"></span></div><p class="recording-note">人物・代表機材は、この日に初めて登場する曲で一度だけ掲載。機材設定は練習用の出発点で、対象録音の実際のつまみ位置を示すものではありません。YouTubeのページ内再生は動画ごとの埋め込み設定や地域制限で使えない場合があります。<a href="https://open.spotify.com/playlist/${esc(COURSE.playlist)}" target="_blank" rel="noopener noreferrer">元のSpotifyプレイリスト</a></p>${tracks.map(t=>{const first=!seen.has(t.bassist);seen.add(t.bassist);return trackCard(t,first)}).join('')}
   ${rhythmLab(day)}${quiz(day)}
   <section class="panel" id="notes"><span class="eyebrow">LISTENING NOTE</span><h2>今日の言葉を残す</h2><label class="note-label" for="day-note">奏者名を使わず、聞こえたベースの働きを3〜6行で。</label><textarea class="note-field" id="day-note" data-day-note="${day.id}" placeholder="例：歌が伸びたところだけ低音が動く。キックとは全部そろわず、2拍目の後ろで補完している。">${esc(state.notes[day.id]||'')}</textarea><p class="note-help">この端末に自動保存。別端末へ移すには「全データを保存」と「復元」を使用。曲のチェックも含まれます。</p><label class="complete-check"><input type="checkbox" data-day-complete="${day.id}" ${state.days[day.id]?'checked':''}> Day ${day.id}を完了にする</label></section>
   <nav class="lesson-footer">${day.id>1?`<a href="${dayHash(day.id-1)}">← Day ${day.id-1}</a>`:'<span></span>'}<a href="#library">48曲の索引</a>${day.id<14?`<a href="${dayHash(day.id+1)}">Day ${day.id+1} →</a>`:'<a href="#compare">聴き比べへ →</a>'}</nav>
@@ -147,16 +145,16 @@ function render(){
   else if(hash==='#playlist')html=playlistPage();else if(/^#playlist\/track-\d+$/.test(hash)){const id=Number(hash.match(/track-(\d+)$/)[1]);location.hash=trackById.has(id)?trackHash(id):'#playlist';return}
   else if(hash==='#bassists')html=bassistsPage();else if(hash==='#rig-guide')html=rigGuidePage();else if(hash==='#library')html=libraryPage();else if(hash==='#compare')html=comparePage();else if(hash==='#foundations')html=foundationsPage()+practiceTemplate();else if(hash==='#sources')html=sourcesPage();else{location.hash='#day-01';return}
   $('#main').innerHTML=html;markActive(day?dayHash(day.id):hash.startsWith('#playlist')?'#playlist':hash);updateSidePanel(day);document.title=`${day?`Day ${day.id} ${day.title}`:$('#main h1')?.textContent} — BASS LISTENING LAB`;window.scrollTo(0,0);bindPage(day);
-  if(openTrack){const card=$(`#track-${openTrack}`);card.open=true;if(day)requestAnimationFrame(()=>card.scrollIntoView({block:'start'}))}
+  if(openTrack&&day)requestAnimationFrame(()=>$(`#track-${openTrack}`)?.scrollIntoView({block:'start'}));
 }
 let activeVideo=null;
 function bindPage(day){
-  $$('[data-youtube]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.youtube;if(!/^[A-Za-z0-9_-]{11}$/.test(id))return;if(activeVideo?.frame.isConnected)activeVideo.frame.replaceWith(activeVideo.button);const frame=document.createElement('iframe');frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;frame.title=`YouTube: ${button.dataset.videoTitle}`;frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';button.replaceWith(frame);activeVideo={frame,button};button.closest('.track-card')?.addEventListener('toggle',e=>{if(!e.currentTarget.open&&frame.isConnected)frame.replaceWith(button)})}));
+  $$('[data-youtube]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.youtube;if(!/^[A-Za-z0-9_-]{11}$/.test(id))return;if(activeVideo?.frame.isConnected)activeVideo.frame.replaceWith(activeVideo.button);const frame=document.createElement('iframe');frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;frame.title=`YouTube: ${button.dataset.videoTitle}`;frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';button.replaceWith(frame);activeVideo={frame,button}}));
   $$('[data-track]').forEach(x=>x.addEventListener('change',e=>save('tracks',e.target.dataset.track,e.target.checked)));
   $$('[data-day-complete]').forEach(x=>x.addEventListener('change',e=>{save('days',e.target.dataset.dayComplete,e.target.checked);renderNav();markActive(dayHash(day.id))}));
   $$('[data-day-note]').forEach(x=>x.addEventListener('input',e=>save('notes',e.target.dataset.dayNote,e.target.value)));
   $$('[data-section]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();$(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'})}));
-  $$('[data-jump-track]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const d=$(`#track-${a.dataset.jumpTrack}`);if(d){d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'})}}));
+  $$('[data-jump-track]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();$(`#track-${a.dataset.jumpTrack}`)?.scrollIntoView({behavior:'smooth',block:'start'})}));
   const search=$('#track-search');if(search)search.addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();const items=COURSE.tracks.filter(t=>[t.artist,t.title,t.bassist,t.album,...t.tags].join(' ').toLowerCase().includes(q));$('#catalog').innerHTML=catalogRows(items)});
   const bassistSearch=$('#bassist-search');if(bassistSearch)bassistSearch.addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();const names=Object.entries(COURSE.bassists).filter(([name,p])=>[name,p.bio,p.gear,p.style,p.technique,p.sound,...Object.values(COURSE.rigNotes.profiles[name])].join(' ').toLowerCase().includes(q)).map(([name])=>name);$('#bassist-catalog').innerHTML=bassistRows(names)});
   $$('[data-pattern]').forEach(b=>b.addEventListener('click',()=>setPattern(b.dataset.pattern)));if($('#rhythm-grid'))setPattern('backbeat');

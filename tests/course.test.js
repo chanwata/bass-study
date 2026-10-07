@@ -57,6 +57,21 @@ test('deep links and day-specific reflection examples',()=>{
   assert.equal(vm.runInContext('Object.keys(answerExamples).length',ctx),14);
   assert.equal(vm.runInContext('spotifyId(COURSE.tracks[5])',ctx),'4imW8rgHwQ3rAmYoeGxW6F');
 });
+test('each lesson shows every track inline and repeats a bassist profile only once per day',()=>{
+  const ctx=boot({value:'{}'});
+  for(const day of COURSE.days){
+    const html=vm.runInContext(`lessonPage(COURSE.days[${day.id-1}])`,ctx);
+    assert.equal((html.match(/<article class="track-card"/g)||[]).length,day.tracks.length,`Day ${day.id}`);
+    assert.equal((html.match(/class="bassist-profile"/g)||[]).length,new Set(day.tracks.map(id=>COURSE.tracks[id-1].bassist)).size,`Day ${day.id}`);
+    assert.doesNotMatch(html,/<details\b|<summary\b/,`Day ${day.id}`);
+    for(const id of day.tracks)assert.ok(html.includes(`id="track-${id}"`));
+  }
+  const day1=vm.runInContext('lessonPage(COURSE.days[0])',ctx);
+  assert.equal((day1.match(/James Jamerson：人物・機材・音/g)||[]).length,1);
+  assert.equal((day1.match(/<h5>略歴<\/h5>/g)||[]).length,1);
+  const day13=vm.runInContext('lessonPage(COURSE.days[12])',ctx);
+  assert.equal((day13.match(/Pino Palladino：人物・機材・音/g)||[]).length,1);
+});
 test('Spotify order is a lookup index into the themed lesson sequence',()=>{
   assert.deepEqual(COURSE.tracks.map(t=>t.id),Array.from({length:48},(_,i)=>i+1));
   const ctx=boot({value:'{}'});
@@ -76,10 +91,12 @@ test('48 YouTube posters and retained Spotify recording links resolve separately
     assert.ok(html.includes(`data-youtube="${youtube}"`),track.id);
     assert.ok(html.includes(`https://i.ytimg.com/vi/${youtube}/hqdefault.jpg`),track.id);
     assert.ok(html.includes(`href="https://www.youtube.com/watch?v=${youtube}"`),track.id);
-    assert.ok(html.includes(`href="${playlist}"`),track.id);
+    assert.ok(!html.includes(`href="${playlist}"`),track.id);
     assert.ok(html.includes(`href="https://open.spotify.com/track/${COURSE.spotifyByTrack[track.id]}"`),track.id);
     assert.equal(html.includes('元のSpotifyプレイリストに入っている録音は教材の指定版と異なります'),[6,34].includes(track.id),track.id);
   }
+  const day=vm.runInContext('lessonPage(COURSE.days[0])',ctx);
+  assert.equal(day.split(`href="${playlist}"`).length-1,1);
 });
 test('all 39 players have distinct rig exercises and cited factual rig details resolve',()=>{
   assert.deepEqual(Object.keys(COURSE.rigNotes.profiles).sort(),Object.keys(COURSE.bassists).sort());

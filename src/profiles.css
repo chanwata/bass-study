@@ -1,4 +1,7 @@
 .bassist-profile{margin:24px 0;border:1px solid #b7cbd7;border-radius:11px;background:#f5faf9;overflow:hidden}
+.bassist-profile-head{display:flex;align-items:baseline;gap:12px;padding:15px 18px;border-bottom:1px solid #d7e6e2}
+.bassist-profile-head span{font-size:.7rem;letter-spacing:.12em;color:var(--teal);font-weight:800}
+.bassist-profile-head h4{font-size:.94rem;margin:0}
 .bassist-profile>summary{display:flex;align-items:center;gap:12px;cursor:pointer;padding:15px 18px;list-style:none}
 .bassist-profile>summary::-webkit-details-marker,.profile-card>summary::-webkit-details-marker{display:none}
 .bassist-profile>summary span{font-size:.7rem;letter-spacing:.12em;color:var(--teal);font-weight:800}
@@ -11,6 +14,7 @@
 .profile-grid p{font-size:.9rem;line-height:1.85;margin:0}
 .gear-caveat{font-size:.76rem!important;line-height:1.75!important;color:var(--muted);margin:13px 0 0!important}
 .rig-panel{border:1px solid #bdd6d0;border-radius:9px;background:#eaf5f2;margin:15px 0;overflow:hidden}
+.rig-panel>h5{font-size:.88rem;color:var(--teal);margin:0;padding:13px 15px}
 .rig-panel>summary{cursor:pointer;padding:13px 15px;font-weight:700;color:var(--teal);min-height:44px}
 .rig-body{padding:0 15px 15px}
 .rig-disclaimer{font-size:.8rem;line-height:1.7;margin:3px 0 12px;color:#284d4a}
@@ -34,6 +38,7 @@
   .profile-grid{grid-template-columns:1fr}
   .profile-grid .profile-sound{grid-column:auto}
   .bassist-profile>summary{align-items:flex-start;flex-direction:column;gap:4px}
+  .bassist-profile-head{align-items:flex-start;flex-direction:column;gap:4px}
   .profile-card>summary{align-items:flex-start;padding:17px}
   .profile-open{white-space:normal;text-align:right}
   .profile-card-body{padding:0 17px 17px}
